@@ -44,6 +44,8 @@ Campos opcionais disponíveis: `unit_weight`, `unit_price`, `location`, `respons
 
 ### 🌱 4. Planejamento de Safra e Atividades
 
+Gerencia o planejamento agrícola, incluindo definição de culturas, etapas de plantio, manejo e colheita com atribuição de tarefas.
+
 - `POST /cropplans` — Criar novo plano de safra.
 - `GET /cropplans` — Listar planos existentes.
 - `POST /cropplans/{id}/tasks` — Adicionar tarefas agrícolas.
@@ -62,6 +64,8 @@ Campos opcionais disponíveis: `unit_weight`, `unit_price`, `location`, `respons
 ---
 
 ### 🌾 6. Produtividade por Cultura e Área *(em construção)*
+
+Permite registrar e acompanhar o rendimento por tipo de cultivo e por área específica da propriedade.
 
 - `POST /productivity/records` — Registrar produtividade por área.
 - `GET /productivity/by-area` — Comparativo por talhão ou lote.
@@ -117,8 +121,41 @@ Os testes são implementados com `pytest` + `Flask test client`, com cobertura d
 
 ---
 
-## 🚀 Para Executar Localmente
+## 🚀 Tutorial de Execução
 
-```bash
-docker-compose up --build
-```
+### 🔹 Usando Ambiente Virtual (modo desenvolvimento)
+
+1. Crie e ative o ambiente virtual:
+
+    ```
+    python3 -m venv venv
+    source venv/bin/activate  # No Windows: venv\Scripts\activate
+    ```
+
+2. Instale as dependências:
+
+    ```
+    pip install -r requirements.txt
+    ```
+
+3. Execute a aplicação:
+
+    ```
+    flask run
+    ```
+
+    A aplicação estará disponível em: http://localhost:5000
+
+---
+
+### 🔹 Usando Docker Compose (modo produção)
+
+1. Certifique-se de ter **Docker** e **Docker Compose** instalados.
+
+2. Inicie os containers:
+
+    ```
+    docker-compose up --build
+    ```
+
+    A aplicação estará disponível em: http://localhost:5000
