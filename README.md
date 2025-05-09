@@ -159,3 +159,9 @@ Os testes são implementados com `pytest` + `Flask test client`, com cobertura d
     ```
 
     A aplicação estará disponível em: http://localhost:5000
+
+## 📚 Documentação da API
+
+Acesse a documentação interativa das rotas e testes via Postman:
+
+👉 [https://documenter.getpostman.com/view/38182127/2sB2j98UnU](https://documenter.getpostman.com/view/38182127/2sB2j98UnU)
