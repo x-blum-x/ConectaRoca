@@ -1,13 +1,12 @@
 from flask import request, jsonify
 from models.models import Transaction
 from datetime import datetime
-from sqlalchemy import func
-import difflib
+from utils.token_validation import decode_token
 
 def create_transaction(db):
     def route():
         data = request.get_json()
-        required = ['user_id', 'type', 'amount', 'category', 'date']
+        required = ['type', 'amount', 'category', 'date']
         if not all(field in data for field in required):
             return jsonify({'message': 'Campos obrigatórios: user_id, type, amount, category, date'}), 400
 
@@ -17,7 +16,7 @@ def create_transaction(db):
         try:
             # Preparar os dados recebidos
             date_obj = datetime.strptime(data['date'], '%Y-%m-%d').date()
-            user_id = data['user_id']
+            user_id = decode_token(request.headers.get('Authorization')).get('user_id')
             trans_type = data['type']
             description = data.get('description', '').lower()
             amount = data['amount']

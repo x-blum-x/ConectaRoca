@@ -106,6 +106,14 @@ Os testes são implementados com `pytest` + `Flask test client`, com cobertura d
 - Cálculo de saldo e valor atual de estoque
 - Histórico detalhado e ordenado de movimentações
 
+#### 🌱 Planejamento e atividades de Safra
+
+- Criação de novo plano de safra.
+- Listagem de planos existentes.
+- Adiciona tarefas agrícolas.
+- Atualiza o status das atividades.
+- Visualização das atividades em intervalo de tempo.
+
 > Os testes garantem que os dados sejam persistidos corretamente no banco SQLite e que os endpoints respondam conforme esperado em casos válidos e inválidos.
 
 ---
@@ -141,7 +149,7 @@ Os testes são implementados com `pytest` + `Flask test client`, com cobertura d
 3. Execute a aplicação:
 
     ```
-    flask run
+    flask --app .\app\app run
     ```
 
     A aplicação estará disponível em: http://localhost:5000

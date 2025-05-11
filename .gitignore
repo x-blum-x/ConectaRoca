@@ -1,4 +1,6 @@
 **/__pycache__
 /__pycache__
 app/routes/__pycache__
+./instance
+./instance/conectaroca.db
 .env
