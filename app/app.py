@@ -10,6 +10,7 @@ from routes.auth.login_user import login_route
 from routes.auth.register_user import register_route
 from routes.users.get_user import get_user_profile
 from routes.users.up_user import update_user_profile
+from routes.users.list_users import get_all_users
 # CONTROLE FINANCEIRO
 from routes.finances.create_transaction import create_transaction
 from routes.finances.list_transactions import list_transactions
@@ -27,6 +28,8 @@ from routes.cropplans.list_cropplans import list_cropplans
 from routes.cropplans.add_task_to_cropplan import add_task_to_cropplan
 from routes.cropplans.update_task_status import update_task_status
 from routes.cropplans.get_task_timeline import get_task_timeline
+# CHAT
+from routes.chat.messages import chat_route
 
 # from routes.reports import (
 #     get_dashboard, get_finance_report,
@@ -55,6 +58,7 @@ app.add_url_rule('/auth/login', 'login', login_route(db), methods=['POST'])
 app.add_url_rule('/auth/register', 'register', register_route(db), methods=['POST'])
 app.add_url_rule('/users/me', 'get_user_profile', token_required(get_user_profile(db)), methods=['GET'])
 app.add_url_rule('/users/<string:id>', 'update_user_profile', token_required(update_user_profile(db)), methods=['PUT'])
+app.add_url_rule('/users', 'get_all_users', token_required(get_all_users(db)), methods=['GET'])
 
 # CONTROLE FINANCEIRO
 app.add_url_rule('/finance/transactions', 'create_transaction', token_required(create_transaction(db)), methods=['POST'])
@@ -87,6 +91,9 @@ app.add_url_rule('/inventory/history', 'get_inventory_history', token_required(g
 # app.add_url_rule('/productivity/by-area', 'get_by_area', token_required(get_by_area(db)), methods=['GET'])
 # app.add_url_rule('/productivity/by-crop', 'get_by_crop', token_required(get_by_crop(db)), methods=['GET'])
 # app.add_url_rule('/productivity/summary', 'get_summary', token_required(get_summary(db)), methods=['GET'])
+
+# CHAT
+app.add_url_rule('/chat/messages', 'chat_route', token_required(chat_route(db)), methods=['POST', 'GET'])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

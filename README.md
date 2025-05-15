@@ -13,6 +13,7 @@ Gerencia perfis e acesso ao sistema com autenticação baseada em JWT. Os dados 
 - `POST /auth/login` — Autenticação usando nome ou email + senha.
 - `POST /auth/register` — Cadastro de usuário com nome, email e senha.
 - `GET /users/me` — Retorna dados do usuário autenticado.
+- `GET /users` — Retorna os perfils de usuário cadastrados na plataforma.
 - `PUT /users/{id}` — Permite atualização de nome e email.
 
 ---
@@ -26,6 +27,27 @@ Permite o registro de receitas e despesas, visualização de transações e gera
 - `GET /finance/summary` — Exibe o saldo atual, receita total e despesas acumuladas.
 - `GET /finance/cashflow` — Retorna fluxo de uma faixa de tempo determinada.
 - `GET /finance/categories` — Lista de categorias típicas para organizar os lançamentos.
+
+---
+
+### 💬 2. Chat entre Usuários
+
+Permite a troca de mensagens privadas entre usuários autenticados por token JWT. Cada mensagem inclui remetente, destinatário, conteúdo e timestamp.
+
+- `POST /chat` — Envia uma nova mensagem. Requer `receiver_id` e `content` no corpo da requisição.
+- `GET /chat?user_id={id}` — Retorna o histórico completo de mensagens entre o usuário autenticado e outro usuário (`user_id`), ordenado pelo tempo.
+
+**Funcionamento Interno**:
+- A autenticação do remetente é feita via token.
+- As mensagens são persistidas no banco com data e hora.
+- O GET exibe a conversa bilateral completa entre dois usuários.
+
+**Possibilidades de Melhoria**:
+- Adicionar suporte a *websockets* para comunicação em tempo real.
+- Criar notificações para mensagens novas.
+- Permitir envio de arquivos/imagens.
+- Implementar paginação no histórico de mensagens.
+- Marcação de mensagens como lidas/não lidas.
 
 ---
 
@@ -113,6 +135,11 @@ Os testes são implementados com `pytest` + `Flask test client`, com cobertura d
 - Adiciona tarefas agrícolas.
 - Atualiza o status das atividades.
 - Visualização das atividades em intervalo de tempo.
+
+#### 💬 Chat entre Usuários
+
+- Envio e recuperação de mensagens entre dois usuários.
+- Verificações de autorização e parâmetros obrigatórios.
 
 > Os testes garantem que os dados sejam persistidos corretamente no banco SQLite e que os endpoints respondam conforme esperado em casos válidos e inválidos.
 
